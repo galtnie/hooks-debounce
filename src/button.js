@@ -27,7 +27,13 @@ const Button = () => {
   }, [finalValue2]);
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start"
+      }}
+    >
       <input
         type="text"
         value={input}
@@ -36,48 +42,48 @@ const Button = () => {
         }}
       />
       <button onClick={() => setClick(click + 1)}>appear</button>
-      <b>
-        when you click the button the text will appear in a sec unless you click
-        again
-      </b>
-      <br />
-      text invoked by button click:
+      <p>
+        <b>
+          when you click the button the text will appear in 2 secs unless you
+          click again
+        </b>
+      </p>
+      <p>text invoked by button click:</p>
       <span> {text1}</span>
-      <br />
-      text invoked by typing stop:
+      <p>text invoked by typing stop:</p>
       <span> {text2} </span>
     </div>
   );
 };
 
-function useDebounce1(value, wait, click) {
-  const [debouncedValue, setDebouncedValue] = useState(value);
+function useDebounce1(value1, wait1, click) {
+  const [debouncedValue1, setDebouncedValue1] = useState(value1);
 
   useEffect(() => {
-    const watcher = setTimeout(() => {
-      setDebouncedValue(value);
-    }, wait);
+    const watcher1 = setTimeout(() => {
+      setDebouncedValue1(value1);
+    }, wait1);
     return () => {
-      clearTimeout(watcher);
+      clearTimeout(watcher1);
     };
-  }, [value, wait, click]);
+  }, [value1, wait1, click]);
 
-  return debouncedValue;
+  return debouncedValue1;
 }
 
-function useDebounce2(value, wait) {
-  const [debouncedValue, setDebouncedValue] = useState(value);
+function useDebounce2(value2, wait2) {
+  const [debouncedValue2, setDebouncedValue2] = useState(value2);
 
   useEffect(() => {
-    const watcher = setTimeout(() => {
-      setDebouncedValue(value);
-    }, wait);
+    const watcher2 = setTimeout(() => {
+      setDebouncedValue2(value2);
+    }, wait2);
     return () => {
-      clearTimeout(watcher);
+      clearTimeout(watcher2);
     };
-  }, [value, wait]);
+  }, [value2, wait2]);
 
-  return debouncedValue;
+  return debouncedValue2;
 }
 
 export default Button;
