@@ -6,7 +6,7 @@ const Button = () => {
   const [text2, setText2] = useState("");
   const [click, setClick] = useState(0);
 
-  const finalValue1 = useDebounce1(input, 1000, click);
+  const finalValue1 = useDebounce1(input, 2000, click);
 
   useEffect(() => {
     if (click > 0) {
@@ -15,6 +15,16 @@ const Button = () => {
       setText1("");
     }
   }, [finalValue1, click]);
+
+  const finalValue2 = useDebounce2(input, 2000);
+
+  useEffect(() => {
+    if (finalValue2) {
+      setText2(finalValue2);
+    } else {
+      setText2("");
+    }
+  }, [finalValue2]);
 
   return (
     <div>
@@ -35,7 +45,7 @@ const Button = () => {
       <span> {text1}</span>
       <br />
       text invoked by typing stop:
-      <span> {} </span>
+      <span> {text2} </span>
     </div>
   );
 };
@@ -51,6 +61,21 @@ function useDebounce1(value, wait, click) {
       clearTimeout(watcher);
     };
   }, [value, wait, click]);
+
+  return debouncedValue;
+}
+
+function useDebounce2(value, wait) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const watcher = setTimeout(() => {
+      setDebouncedValue(value);
+    }, wait);
+    return () => {
+      clearTimeout(watcher);
+    };
+  }, [value, wait]);
 
   return debouncedValue;
 }
