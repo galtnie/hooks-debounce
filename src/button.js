@@ -1,14 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Button = () => {
   const [input, setInput] = useState("");
   const [text, setText] = useState("");
-
-  const appear = () => {
-    setTimeout(() => {
-      setText(input);
-    }, 2000);
-  };
 
   return (
     <div>
@@ -19,11 +13,28 @@ const Button = () => {
           setInput(e.target.value);
         }}
       />
-      <button onClick={appear}>txt will appear in 2 secs</button>
+      <button onClick={() => setText(input)}>appear</button>
+      <b>text will appear in 2 secs unless you click again</b>
       <br />
-      <span>{text}</span>
+      text invoked by button click:
+      <span> {text}</span>
     </div>
   );
 };
+
+// function useDebounce(value, wait) {
+//   const [debouncedValue, setDebouncedValue] = useState(value);
+
+//   useEffect(() => {
+//     const watcher = setTimeout(() => {
+//       setDebouncedValue(value);
+//     }, wait);
+//     return () => {
+//       clearTimeout(watcher);
+//     };
+//   }, [value, wait]);
+
+//   return(debouncedValue);
+// }
 
 export default Button;
