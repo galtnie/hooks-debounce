@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Button = () => {
+const Debouncer = () => {
   const [input, setInput] = useState("");
   const [text1, setText1] = useState("");
   const [text2, setText2] = useState("");
@@ -86,4 +86,4 @@ function useDebounce2(value2, wait2) {
   return debouncedValue2;
 }
 
-export default Button;
+export default Debouncer;

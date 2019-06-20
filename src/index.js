@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Button from "./button";
+import Button from "./debouncer";
 
 function App() {
   return (
